@@ -176,8 +176,11 @@ function updateStrengthBar(score) {
 
   if (score <= 2 ){
     strengthBar.className = "strength-bar";
-    strengthLabel.innerHTML =  stringFuerza+"Débil";
-  }else if ( score <= 4 ){
+    strengthLabel.innerHTML =  stringFuerza+"Muy Débil";
+  }else if ( score == 3 ){
+    strengthBar.className = "strength-bar good";
+    strengthLabel.innerHTML =  stringFuerza+"Debil";
+  }else if ( score == 4 ){
     strengthBar.className = "strength-bar good";
     strengthLabel.innerHTML =  stringFuerza+"Media";
   }else {
