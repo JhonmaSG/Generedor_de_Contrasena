@@ -28,6 +28,10 @@ header {
     text-align: center;
 }
 
+header h1{
+    font-size: 40px;
+}
+
 h1, h2, h3 {
     margin: 10px 0;
 }
@@ -48,6 +52,26 @@ h1, h2, h3 {
 
 .container-form {
     margin-top: 20px;
+}
+
+.container-answer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.container-answer input[type="text"] {
+    width: 80%;
+    text-align: center;
+}
+
+input[type="number"], input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--space-cadet);
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
 fieldset {
@@ -73,23 +97,8 @@ h3 {
     margin: 0 0 10px 0;
 }
 
-.categorias{
-    width: 20px;
-}
-
 .checkboxs {
     display: grid;
-}
-
-input[type="number"], input[type="text"] {
-    padding: 10px;
-    border: 1px solid var(--space-cadet);
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-input[type="number"] {
-    width: 20%;
 }
 
 #sumar, #restar{
@@ -97,7 +106,7 @@ input[type="number"] {
 }
 
 input[type="text"] {
-    width: 96%;
+    width: 90%;
     max-width: 1123px;
     margin-bottom: 15px;
 }
@@ -137,7 +146,7 @@ button:hover {
 .hidden {
     display: none;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.8s ease;
 }
 
 #notification {

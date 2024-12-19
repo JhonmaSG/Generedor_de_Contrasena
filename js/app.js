@@ -1,97 +1,96 @@
 export function generatedPassword() {
   let forma = document.forms["forma"];
 
-  let itemList = document.getElementById("categorias");
-  let collectionValue = itemList.options[itemList.selectedIndex].value;
-
-  const peliculas = [
-    "Inception",
-    "Titanic",
-    "Avatar",
-    "Matrix",
-    "Gladiator",
-    "Interstellar",
-    "Joker",
-    "Parasite",
-    "Frozen",
-    "Coco",
-    "Up",
-    "ToyStory",
-    "FindingNemo",
-    "TheLionKing",
-    "Aladdin",
-    "Mulan",
-    "Shrek",
-    "HarryPotter",
-    "LordOfTheRings",
-    "StarWars",
-  ];
-  const tecnologia = [
-    "JavaScript",
-    "Python",
-    "Blockchain",
-    "AI",
-    "Cloud",
-    "IoT",
-    "BigData",
-    "MachineLearning",
-    "Cybersecurity",
-    "5G",
-    "Quantum Computing",
-    "AR",
-    "VR",
-    "Robotics",
-    "Drones",
-    "Wearables",
-    "3DPrinting",
-    "Biotechnology",
-    "Nanotechnology",
-    "EdgeComputing",
-  ];
-  const musica = [
-    "Rock",
-    "Jazz",
-    "Pop",
-    "Classical",
-    "Hip-hop",
-    "Blues",
-    "Reggae",
-    "Country",
-    "Electronic",
-    "Folk",
-    "Soul",
-    "R&B",
-    "Metal",
-    "Punk",
-    "Disco",
-    "Funk",
-    "Gospel",
-    "Opera",
-    "Salsa",
-    "Reggaeton",
-  ];
-  const deportes = [
-    "Futbol",
-    "Baloncesto",
-    "Tenis",
-    "Natacion",
-    "Ciclismo",
-    "Atletismo",
-    "Boxeo",
-    "Rugby",
-    "Criquet",
-    "Golf",
-    "Voleibol",
-    "Beisbol",
-    "Hockey",
-    "Esqui",
-    "Snowboard",
-    "Surf",
-    "Skateboarding",
-    "Escalada",
-    "Karate",
-    "Judo",
-  ];
+  const categorias = {
+    peliculas: [
+      "Inception",
+      "Titanic",
+      "Avatar",
+      "Matrix",
+      "Gladiator",
+      "Interstellar",
+      "Joker",
+      "Parasite",
+      "Frozen",
+      "Coco",
+      "Up",
+      "ToyStory",
+      "FindingNemo",
+      "TheLionKing",
+      "Aladdin",
+      "Mulan",
+      "Shrek",
+      "HarryPotter",
+      "LordOfTheRings",
+      "StarWars",
+    ],
+    tecnologia: [
+      "JavaScript",
+      "Python",
+      "Blockchain",
+      "AI",
+      "Cloud",
+      "IoT",
+      "BigData",
+      "MachineLearning",
+      "Cybersecurity",
+      "5G",
+      "Quantum Computing",
+      "AR",
+      "VR",
+      "Robotics",
+      "Drones",
+      "Wearables",
+      "3DPrinting",
+      "Biotechnology",
+      "Nanotechnology",
+      "EdgeComputing",
+    ],
+    musica: [
+      "Rock",
+      "Jazz",
+      "Pop",
+      "Classical",
+      "Hip-hop",
+      "Blues",
+      "Reggae",
+      "Country",
+      "Electronic",
+      "Folk",
+      "Soul",
+      "R&B",
+      "Metal",
+      "Punk",
+      "Disco",
+      "Funk",
+      "Gospel",
+      "Opera",
+      "Salsa",
+      "Reggaeton",
+    ],
+    deportes: [
+      "Futbol",
+      "Baloncesto",
+      "Tenis",
+      "Natacion",
+      "Ciclismo",
+      "Atletismo",
+      "Boxeo",
+      "Rugby",
+      "Criquet",
+      "Golf",
+      "Voleibol",
+      "Beisbol",
+      "Hockey",
+      "Esqui",
+      "Snowboard",
+      "Surf",
+      "Skateboarding",
+      "Escalada",
+      "Karate",
+      "Judo",
+    ],
+  };
 
   //Const and lets
   let length = forma["length"].value;
@@ -121,9 +120,17 @@ export function generatedPassword() {
     const randomIndex = Math.floor(Math.random() * char.length);
     password += char[randomIndex];
   }
-
   document.getElementById("password").value = password;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  let itemList = document.getElementById("categorias");
+
+  itemList.addEventListener("change", (event) => {
+    const seleccionCat = event.target.value;
+    console.log(`Categoría seleccionada: ${seleccionCat}`);
+  });
+});
 
 document.getElementById("copy").addEventListener("click", function () {
   const passwordInput = document.getElementById("password");
