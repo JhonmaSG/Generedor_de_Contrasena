@@ -136,8 +136,8 @@ export function generatedPassword() {
 
   password = palabraAleatoria;
   while (password.length < length) {
-    const randomChar = Math.floor(Math.random() * char.length);
-    password += char[randomChar];
+    const randomIndex = Math.floor(Math.random() * char.length);
+    password += char[randomIndex];
   }
   password = password
     .split("")

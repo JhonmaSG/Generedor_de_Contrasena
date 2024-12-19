@@ -6,7 +6,6 @@
     --white: #ffffff;
     --light-gray: #f7f7f7;
     --dark-gray: #333333;
-    --accent-color: #5bc0beff;
 }
 
 body {
@@ -24,14 +23,24 @@ body {
 header {
     background-color: var(--oxford-blue);
     color: var(--white);
-    padding: 20px;
+    padding: 10px;
     text-align: center;
 }
 
-header h1{
-    font-size: 40px;
+header h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: var(--verdigris);
+    margin: 0;
+    padding: 20px 0;
+    display: inline-block;
 }
 
+header h1:hover {
+    color: var(--white);
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+}
 h1, h2, h3 {
     margin: 10px 0;
 }
