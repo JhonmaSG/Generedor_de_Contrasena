@@ -2,6 +2,9 @@
 
 Este es un generador de contraseñas seguro que permite crear contraseñas personalizadas con opciones para seleccionar diferentes categorías, longitudes y tipos de caracteres.
 
+![Generador de Contraseñas](css/generadorScreenshot.PNG)
+
+
 ## Descripción
 
 El generador de contraseñas ofrece una interfaz simple y fácil de usar para crear contraseñas seguras y aleatorias. Los usuarios pueden elegir entre diferentes categorías como "Películas", "Tecnología", "Música" y "Deportes" para agregar un toque personalizado a sus contraseñas, además de poder incluir mayúsculas, minúsculas, números y caracteres especiales.
