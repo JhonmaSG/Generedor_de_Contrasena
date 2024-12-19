@@ -21,7 +21,7 @@ export function generatedPassword() {
       "Mulan",
       "Shrek",
       "HarryPotter",
-      "LordOfTheRings",
+      "LordRings",
       "StarWars",
     ],
     tecnologia: [
@@ -32,19 +32,19 @@ export function generatedPassword() {
       "Cloud",
       "IoT",
       "BigData",
-      "MachineLearning",
-      "Cybersecurity",
+      "Machine",
+      "Security",
       "5G",
-      "Quantum Computing",
+      "QuantumC",
       "AR",
       "VR",
       "Robotics",
       "Drones",
       "Wearables",
       "3DPrinting",
-      "Biotechnology",
-      "Nanotechnology",
-      "EdgeComputing",
+      "Biotech",
+      "Nanotec",
+      "Computing",
     ],
     musica: [
       "Rock",
@@ -85,7 +85,7 @@ export function generatedPassword() {
       "Esqui",
       "Snowboard",
       "Surf",
-      "Skateboarding",
+      "Skateboard",
       "Escalada",
       "Karate",
       "Judo",
@@ -94,6 +94,7 @@ export function generatedPassword() {
 
   //Const and lets
   let length = forma["length"].value;
+  let categoriaSeleccionada = forma["categorias"].value;
   let useUpperCase = forma["uppercase"].checked;
   let useLowerCase = forma["lowercase"].checked;
   let useNumbers = forma["numbers"].checked;
@@ -110,37 +111,80 @@ export function generatedPassword() {
   if (useNumbers) char += `${numbersChars}`;
   if (useSymbols) char += `${symbolsChars}`;
 
+  //Excepción carácteres
   if (char === "") {
     alert("Selecciona al menos un tipo de carácter.");
     return;
   }
 
-  let password = "";
-  for (let i = 0; i < length; i++) {
-    const randomIndex = Math.floor(Math.random() * char.length);
-    password += char[randomIndex];
+  //Excepción lenght
+  if (length < 12 || length > 25) {
+    alert("La longitud debe estar entre 12 y 25 caracteres.");
+    return;
   }
+
+  //Seleccion de categoria
+  let palabraAleatoria = "";
+  let password = "";
+  if (categoriaSeleccionada !== "ninguna") {
+    const palabras = categorias[categoriaSeleccionada];
+    const randomIndex = Math.floor(Math.random() * palabras.length);
+    palabraAleatoria = palabras[randomIndex];
+  }
+
+  password = palabraAleatoria;
+  while (password.length < length) {
+    const randomChar = Math.floor(Math.random() * char.length);
+    password += char[randomChar];
+  }
+  password = password
+    .split("")
+    .sort(() => Math.random() - 0.5)
+    .join("");
   document.getElementById("password").value = password;
+
+  const score = calcularStrength(password);
+  updateStrengthBar(score);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  let itemList = document.getElementById("categorias");
+//Calcular Fuerza Password
+function calcularStrength(password) {
+  let score = 0;
 
-  itemList.addEventListener("change", (event) => {
-    const seleccionCat = event.target.value;
-    console.log(`Categoría seleccionada: ${seleccionCat}`);
-  });
-});
+  //puntuación
+  if (password.length >= 10) score++;
+  if (password.length >= 12) score++;
 
-document.getElementById("copy").addEventListener("click", function () {
-  const passwordInput = document.getElementById("password");
-  passwordInput.select();
-  navigator.clipboard
-    .writeText(passwordInput.value)
-    .then(() => showNotification("¡Contraseña copiada!"))
-    .catch(() => showNotification("Error al copiar la contraseña"));
-});
+  if (/[A-Z]/.test(password)) score++; //Mayúsculas
+  if (/[a-z]/.test(password)) score++; //Minusculas
+  if (/[0-9]/.test(password)) score++; //Numbers
+  if (/[^A-Za-z0-9]/.test(password)) score++; //Symbols
+  
+  return score;
+}
 
+//Update Barra
+function updateStrengthBar(score) {
+  const strengthBar = document.getElementById("strength-bar");
+  const strengthLabel = document.getElementById("strength-label");
+
+  const stringFuerza = "<strong>Fuerza: </strong>"
+  const porcentaje = (score / 6) * 100;
+  strengthBar.style.width = `${porcentaje}%`;
+
+  if (score <= 2 ){
+    strengthBar.className = "strength-bar";
+    strengthLabel.innerHTML =  stringFuerza+"Débil";
+  }else if ( score <= 4 ){
+    strengthBar.className = "strength-bar good";
+    strengthLabel.innerHTML =  stringFuerza+"Media";
+  }else {
+    strengthBar.className = "strength-bar strong";
+    strengthLabel.innerHTML =  stringFuerza+"Fuerte";
+  }
+}
+
+//Mostrar Notificación
 function showNotification(message, duration = 1500) {
   const notification = document.getElementById("notification");
   notification.textContent = message;
@@ -156,6 +200,7 @@ function showNotification(message, duration = 1500) {
   }, duration);
 }
 
+//Acción de longitud min-max
 function cambiarLongitud(accion) {
   let longitud = document.getElementById("length");
   let valorActual = parseInt(longitud.value);
@@ -167,17 +212,30 @@ function cambiarLongitud(accion) {
   }
 }
 
-function resetFormulario() {
-  document.getElementById("password").value = "";
-}
+//Evento de copyBoard
+document.getElementById("copy").addEventListener("click", function () {
+  const passwordInput = document.getElementById("password");
+  passwordInput.select();
+  navigator.clipboard
+    .writeText(passwordInput.value)
+    .then(() => showNotification("¡Contraseña copiada!"))
+    .catch(() => showNotification("Error al copiar la contraseña"));
+});
 
-document
-  .getElementById("resetFormButton")
-  .addEventListener("click", resetFormulario);
+//Limpiar Formulario
+document.getElementById("resetFormButton").addEventListener("click", () => {
+  return location.reload();
+});
+
+//Generar Password
 document.getElementById("generar").addEventListener("click", generatedPassword);
+
+//Sumar longitud
 document
   .getElementById("sumar")
   .addEventListener("click", () => cambiarLongitud("sumar"));
+
+//Restar longitud
 document
   .getElementById("restar")
   .addEventListener("click", () => cambiarLongitud("restar"));

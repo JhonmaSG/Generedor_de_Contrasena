@@ -38,7 +38,7 @@ h1, h2, h3 {
 
 .container-body {
     width: 60%;
-    margin: 20px auto;
+    margin: 15px auto;
     padding: 20px;
     background: var(--white);
     border-radius: 10px;
@@ -67,11 +67,29 @@ h1, h2, h3 {
     text-align: center;
 }
 
+.container-categorias {
+    width: 100px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
 input[type="number"], input[type="text"] {
     padding: 10px;
     border: 1px solid var(--space-cadet);
     border-radius: 5px;
     font-size: 1rem;
+}
+
+input[type="text"] {
+    width: 90%;
+    max-width: 1123px;
+    margin-bottom: 15px;
+}
+
+input[type="text"]::placeholder {
+    color: var(--dark-gray);
+    font-style: italic;
+    opacity: 0.8;
 }
 
 fieldset {
@@ -105,18 +123,6 @@ h3 {
     display: inline-block;
 }
 
-input[type="text"] {
-    width: 90%;
-    max-width: 1123px;
-    margin-bottom: 15px;
-}
-
-input[type="text"]::placeholder {
-    color: var(--dark-gray);
-    font-style: italic;
-    opacity: 0.8;
-}
-
 .buttons {
     display: flex;
     gap: 10px;
@@ -140,6 +146,35 @@ button {
 button:hover {
     background-color: var(--yinmn-blue);
     transform: scale(1.05);
+}
+
+/*Strongs password*/
+.password-strength {
+    width: 50%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+  
+.strength-bar {
+    height: 100%;
+    width: 0;
+    background-color: #f00; /* Rojo por defecto */
+    transition: width 0.5s, background-color 0.5s;
+}
+  
+.strength-bar.good {
+    background-color: #ffa500; /* Naranja */
+}
+  
+.strength-bar.strong {
+    background-color: #0f0; /* Verde */
+}
+
+#strength-label {
+    margin: 5px;
 }
 
 /* CopyBoard Message */
