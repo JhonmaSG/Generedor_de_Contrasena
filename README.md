@@ -27,4 +27,4 @@ El generador de contraseñas ofrece una interfaz simple y fácil de usar para cr
 1. Clona el repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/JhonmaSG/generador-contraseñas.git
+   git clone https://github.com/JhonmaSG/Generedor_de_Contrasena.github.io
