@@ -2,7 +2,7 @@ export function generatedPassword() {
   let forma = document.forms["forma"];
 
   let itemList = document.getElementById("categorias");
-  let collection = itemList.selectedOptions;
+  let collectionValue = itemList.options[itemList.selectedIndex].value;
 
   const peliculas = [
     "Inception",
@@ -117,15 +117,12 @@ export function generatedPassword() {
   }
 
   let password = "";
-  //console.log(collection[1]);
-  if(true) {
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * char.length);
-        password += char[randomIndex];
-      }
-    
-      document.getElementById("password").value = password;
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * char.length);
+    password += char[randomIndex];
   }
+
+  document.getElementById("password").value = password;
 }
 
 document.getElementById("copy").addEventListener("click", function () {
