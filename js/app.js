@@ -8,26 +8,26 @@ export function generatedPassword() {
       "Avatar",
       "Matrix",
       "Gladiator",
-      "Interstellar",
+      "Interstel",
       "Joker",
       "Parasite",
       "Frozen",
       "Coco",
       "Up",
       "ToyStory",
-      "FindingNemo",
-      "TheLionKing",
+      "Nemo",
+      "TheLion",
       "Aladdin",
       "Mulan",
       "Shrek",
-      "HarryPotter",
+      "Harry",
       "LordRings",
       "StarWars",
     ],
     tecnologia: [
-      "JavaScript",
+      "Java",
       "Python",
-      "Blockchain",
+      "Block",
       "AI",
       "Cloud",
       "IoT",
@@ -38,10 +38,10 @@ export function generatedPassword() {
       "QuantumC",
       "AR",
       "VR",
-      "Robotics",
+      "Robotic",
       "Drones",
       "Wearables",
-      "3DPrinting",
+      "3DPrint",
       "Biotech",
       "Nanotec",
       "Computing",
@@ -51,7 +51,7 @@ export function generatedPassword() {
       "Jazz",
       "Pop",
       "Classical",
-      "Hip-hop",
+      "HipHop",
       "Blues",
       "Reggae",
       "Country",
@@ -94,6 +94,8 @@ export function generatedPassword() {
 
   //Const and lets
   let length = forma["length"].value;
+  const minValue = parseInt(forma["length"].min, 10);
+  const maxValue = parseInt(forma["length"].max, 10);
   let categoriaSeleccionada = forma["categorias"].value;
   let useUpperCase = forma["uppercase"].checked;
   let useLowerCase = forma["lowercase"].checked;
@@ -118,8 +120,8 @@ export function generatedPassword() {
   }
 
   //Excepción lenght
-  if (length < 12 || length > 25) {
-    alert("La longitud debe estar entre 12 y 25 caracteres.");
+  if (length < minValue || length > maxValue) {
+    alert(`La longitud debe estar entre ${minValue} y ${maxValue} caracteres.`);
     return;
   }
 
@@ -159,7 +161,7 @@ function calcularStrength(password) {
   if (/[a-z]/.test(password)) score++; //Minusculas
   if (/[0-9]/.test(password)) score++; //Numbers
   if (/[^A-Za-z0-9]/.test(password)) score++; //Symbols
-  
+
   return score;
 }
 
